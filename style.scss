@@ -1,0 +1,86 @@
+:root {
+    --button-size: 50px;
+    
+}
+
+.perspective-container {
+    perspective: 100px;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transform-origin: calc(100vw/2) calc(100vh/2);
+
+}
+.perspective-menu {
+    transform-style: preserve-3d;
+    transform: rotateX(35deg);
+}
+.stick-bottom {
+    position: fixed;
+    bottom: 0;
+    
+}
+.stick-center{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.bottom-navigation{
+    background-color: grey;
+    padding: 15px;
+    border-radius: 8px;
+    transform: translateY(15px) rotateX(35deg);
+}
+.stacked-panel {
+  position: fixed;
+  animation: move 3s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+}
+
+@keyframes move {
+  to {
+    transform: translateZ(-400px);
+  }
+}
+.space {
+  left: calc(100vw/2.5);
+  
+}
+.background {
+  position: absolute;
+}
+
+
+.bubble {
+  position: fixed;
+  background: black;
+  opacity: .7;
+  border-radius: 50%;
+  // animation: move 3s infinite;
+  animation: move 3s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+}
+
+
+@for $i from 1 through 200 {
+  .bubble:nth-child(#{$i}){
+     $size: random(30)+px;
+     height: $size;
+     width: $size;
+     //animation-delay: -$i * .2s;
+     transform: translate3d((random(100)/100 * 150vw),  (random(100)/100 * 150vh), (random(600) * 1px));
+     background: hsl( random(360) , 70%, 50%);
+  }
+
+ 
+}
+
+
+// @for $i from 1 through 2 {
+//   .space:nth-child(#{$i}){
+//      transform: scale($i * 5); 
+//   }
+ 
+// }
