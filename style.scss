@@ -1,6 +1,7 @@
+$distance-between-panel: 100px;
+
 :root {
     --button-size: 50px;
-    
 }
 
 .perspective-container {
@@ -8,7 +9,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    transform-origin: calc(100vw/2) calc(100vh/2);
+    transform-origin: center center;
 
 }
 .perspective-menu {
@@ -40,7 +41,7 @@
 
 @keyframes move {
   to {
-    transform: translateZ(-400px);
+    transform: translateZ(-1 * $distance-between-panel * 2 * 2);
   }
 }
 .space {
@@ -57,10 +58,10 @@
   background: black;
   opacity: .7;
   border-radius: 50%;
-  // animation: move 3s infinite;
   animation: move 3s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
+  transform-origin: center center;
 }
 
 
@@ -71,16 +72,20 @@
      width: $size;
      //animation-delay: -$i * .2s;
      transform: translate3d((random(100)/100 * 150vw),  (random(100)/100 * 150vh), (random(600) * 1px));
-     background: hsl( random(360) , 70%, 50%);
+     background: hsl(random(360) , 70%, 50%);
   }
-
- 
 }
 
+@for $i from 1 through 3 {
+  .stacked-panel:nth-child(#{$i}){
+      transform: translateZ(($i - 1) * $distance-between-panel);
+  }
+}
 
-// @for $i from 1 through 2 {
-//   .space:nth-child(#{$i}){
-//      transform: scale($i * 5); 
-//   }
- 
-// }
+@for $i from 1 through 3 {
+  .stacked-panel:nth-child(#{$i}){
+      $temp: (($i - 1) * $distance-between-panel)/($distance-between-panel * 2 * 2);
+      opacity: calc(-4 * var(--scroll) + ((#{$i} - 1) * 2) + 1);
+  }
+}
+
