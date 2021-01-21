@@ -84,7 +84,6 @@ $distance-between-panel: 100px;
 
 @for $i from 1 through 3 {
   .stacked-panel:nth-child(#{$i}){
-      $temp: (($i - 1) * $distance-between-panel)/($distance-between-panel * 2 * 2);
       opacity: calc(-4 * var(--scroll) + ((#{$i} - 1) * 2) + 1);
   }
 }
