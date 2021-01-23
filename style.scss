@@ -1,16 +1,16 @@
 $distance-between-panel: 100px;
-
+$panel-count: 4;
 :root {
     --button-size: 50px;
 }
 
 .perspective-container {
-    perspective: 100px;
+    perspective: 90px;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    transform-origin: center center;
-
+    width: 100%; 
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
 }
 .perspective-menu {
     transform-style: preserve-3d;
@@ -37,17 +37,23 @@ $distance-between-panel: 100px;
   animation: move 3s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
+  height: 100vh;
 }
 
 @keyframes move {
   to {
-    transform: translateZ(-1 * $distance-between-panel * 2 * 2);
+    transform: translateZ(-1 * $distance-between-panel * ($panel-count - 1) * 2);
   }
 }
-.space {
-  left: calc(100vw/2.5);
-  
-}
+// .space {
+//   left: calc(100vw/2.5);
+// }
+// .wrapper {
+//   width: 150vw;
+//   height: 150vh;
+//   transform-style: preserve-3d;
+//   transform-origin: center center;
+// }
 .background {
   position: absolute;
 }
@@ -55,6 +61,7 @@ $distance-between-panel: 100px;
 
 .bubble {
   position: fixed;
+  //top: 0; left: 0; bottom: 0; right: 0;
   background: black;
   opacity: .7;
   border-radius: 50%;
@@ -65,26 +72,26 @@ $distance-between-panel: 100px;
 }
 
 
-@for $i from 1 through 200 {
+@for $i from 1 through 100 {
   .bubble:nth-child(#{$i}){
      $size: random(30)+px;
      height: $size;
      width: $size;
      //animation-delay: -$i * .2s;
-     transform: translate3d((random(100)/100 * 150vw),  (random(100)/100 * 150vh), (random(600) * 1px));
+     transform: translate3d((random(150) * 1vw),  (random(150) * 1vh), (random(600) * 1px));
      background: hsl(random(360) , 70%, 50%);
   }
-}
+} 
 
-@for $i from 1 through 3 {
+@for $i from 1 through $panel-count {
   .stacked-panel:nth-child(#{$i}){
       transform: translateZ(($i - 1) * $distance-between-panel);
   }
 }
 
-@for $i from 1 through 3 {
+@for $i from 1 through $panel-count {
   .stacked-panel:nth-child(#{$i}){
-      opacity: calc(-4 * var(--scroll) + ((#{$i} - 1) * 2) + 1);
+      opacity: calc((#{$i * $panel-count}/#{$panel-count - 1}) - #{$panel-count} * var(--scroll));
   }
 }
 
