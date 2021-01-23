@@ -42,7 +42,7 @@ $panel-count: 4;
 
 @keyframes move {
   to {
-    transform: translateZ(-1 * $distance-between-panel * ($panel-count - 1) * 2);
+    transform: translateZ(-1 * $distance-between-panel * ($panel-count - 1.2) * 2);
   }
 }
 // .space {
