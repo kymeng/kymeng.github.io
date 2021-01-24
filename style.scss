@@ -4,6 +4,12 @@ $panel-count: 5;
     --button-size: 50px;
 }
 
+@media only screen and (max-width: 700px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+}
+
 .perspective-container {
     perspective: 90px;
     position: fixed;
@@ -38,6 +44,7 @@ $panel-count: 5;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   height: 100vh;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 
 @keyframes move {
@@ -56,6 +63,19 @@ $panel-count: 5;
 // }
 .background {
   position: absolute;
+}
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
+@keyframes bounce {
+    70% { transform:translateY(0%); }
+    80% { transform:translateY(-30%); }
+    90% { transform:translateY(0%); }
+    95% { transform:translateY(-14%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-6%); }
+    100% { transform:translateY(0); }
 }
 
 
