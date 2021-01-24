@@ -116,7 +116,18 @@ $panel-count: 5;
      height: $size;
      width: $size;
      //animation-delay: -$i * .2s;
-     transform: translate3d((random(150) * 1vw),  (random(150) * 1vh), (random(600) * 1px));
+     transform: translate3d((random(150) * 1vw),  (random(150) * 1vh), (random($distance-between-panel * $panel-count) * 1px));
+     background: hsl(random(360) , 70%, 50%);
+  }
+} 
+
+@for $i from 101 through 107 {
+  .bubble:nth-child(#{$i}){
+     $size: random(70)+px;
+     height: $size;
+     width: $size;
+     //animation-delay: -$i * .2s;
+     transform: translate3d((random(150) * 1vw),  (random(150) * 1vh), (2px));
      background: hsl(random(360) , 70%, 50%);
   }
 } 
