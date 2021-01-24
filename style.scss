@@ -91,7 +91,10 @@ $panel-count: 4;
 
 @for $i from 1 through $panel-count {
   .stacked-panel:nth-child(#{$i}){
-      opacity: calc((#{$i * $panel-count}/#{$panel-count - 1}) - #{$panel-count} * var(--scroll));
+      $temp: ($i - 1)/($panel-count - 1);
+      opacity: calc(1 - ((#{$panel-count + 1} * (var(--scroll) - #{$temp})) * (#{$panel-count + 1} * (var(--scroll) - #{$temp}))));
+      //opacity: calc((#{$i * $panel-count}/#{$panel-count - 1}) - #{$panel-count} * var(--scroll));
   }
 }
 
+ 
